@@ -6,30 +6,59 @@
 //  Copyright © 2019 twisted echo. All rights reserved.
 //
 
-
+//MARK:- Step 1 import pin icon
 
 import UIKit
 import MapKit
 import LBTATools
 
+//MARK:- step 4 extension of mapview for manual drawing of pins
+extension MainViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let anotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "id")
+        anotationView.canShowCallout = true
+        anotationView.image = #imageLiteral(resourceName: "GYmPinSmall")
+        return anotationView
+    }
+}
+
 class MainViewController: UIViewController {
 
-    //MARK:- step 4 move map view to gloabal
     let mapView = MKMapView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //MARK:- step 5 manually draw pins with a delegate
+        mapView.delegate = self
+        
         view.addSubview(mapView)
         mapView.fillSuperview()
-        //MARK:- step 5 setup region for map
         setupRegionForMap()
+        //MARK:- Step 2 setupAnnotations
+        setupAnnotationsForMap()
         
     }
-    
-    //MARK:- step 4 setup region for map
+    //MARK:- Step 2 setupAnnotations
+    fileprivate func setupAnnotationsForMap() {
+        let annotations = MKPointAnnotation()
+        annotations.coordinate = CLLocationCoordinate2D(latitude: 51.535536, longitude: -3.142308)
+        annotations.title = "Home"
+        annotations.subtitle = "sweet home"
+        mapView.addAnnotation(annotations)
+        
+        //MARK:- Step 3 show more than 1 pin on the map
+        let spireHospital = MKPointAnnotation()
+        spireHospital.coordinate = .init(latitude: 51.531330, longitude: -3.141665)
+        spireHospital.title = "Spire Hospital"
+        mapView.addAnnotation(spireHospital)
+        //show all
+        mapView.showAnnotations(self.mapView.annotations, animated: true)
+        
+    }
+
     fileprivate func setupRegionForMap() {
-        let centerCoord = CLLocationCoordinate2D(latitude: 51.538368, longitude: -3.205172)
+        let centerCoord = CLLocationCoordinate2D(latitude: 51.535536, longitude: -3.142308)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let region = MKCoordinateRegion(center: centerCoord, span: span)
         mapView.setRegion(region, animated: true)
@@ -38,19 +67,15 @@ class MainViewController: UIViewController {
     
 }
 
-//MARK:- step 1 import swift UI and create MainPreview with provider
-
 import SwiftUI
 
 struct MainPreview: PreviewProvider {
 
     static var previews: some View {
-        //MARK:- step 3 add ignore safe area
+    
         ContainerView().edgesIgnoringSafeArea(.all)
     }
-    
-    //MARK:- step 2 create another struct Container view, once you have that use make ui view controller
-    
+
     struct ContainerView: UIViewControllerRepresentable {
         func makeUIViewController(context: UIViewControllerRepresentableContext<MainPreview.ContainerView>) -> MainViewController {
             return MainViewController()
