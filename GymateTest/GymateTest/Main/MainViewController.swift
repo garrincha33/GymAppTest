@@ -6,13 +6,10 @@
 //  Copyright © 2019 twisted echo. All rights reserved.
 //
 
-//MARK:- Step 1 import pin icon
-
 import UIKit
 import MapKit
 import LBTATools
 
-//MARK:- step 4 extension of mapview for manual drawing of pins
 extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let anotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "id")
@@ -28,31 +25,55 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //MARK:- step 5 manually draw pins with a delegate
+
         mapView.delegate = self
-        
         view.addSubview(mapView)
         mapView.fillSuperview()
         setupRegionForMap()
-        //MARK:- Step 2 setupAnnotations
-        setupAnnotationsForMap()
+        //setupAnnotationsForMap()
+        //MARK: step 4 call function
+        performLocalSearch()
         
     }
-    //MARK:- Step 2 setupAnnotations
+    //MARK: step 1 create a local search function
+    fileprivate func performLocalSearch() {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = "Gym"
+        
+        //MARK: step 2 setup location
+        let centerCoordinate = CLLocationCoordinate2D(latitude: 51.535536, longitude: -3.142308)
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let region = MKCoordinateRegion(center: centerCoordinate, span: span)
+        request.region = region
+
+        let localSearch = MKLocalSearch(request: request)
+        localSearch.start { (resp, err) in
+            if let err = err {
+                print("unable to retrieve search", err)
+            }
+            //MARK: step 3 access mapitem for names and annotations
+            resp?.mapItems.forEach({ (mapItem) in
+                print(mapItem.name ?? "")
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = mapItem.placemark.coordinate
+                annotation.title = mapItem.name
+                self.mapView.addAnnotation(annotation)
+            })
+            self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+        }
+    }
+
     fileprivate func setupAnnotationsForMap() {
         let annotations = MKPointAnnotation()
         annotations.coordinate = CLLocationCoordinate2D(latitude: 51.535536, longitude: -3.142308)
         annotations.title = "Home"
         annotations.subtitle = "sweet home"
         mapView.addAnnotation(annotations)
-        
-        //MARK:- Step 3 show more than 1 pin on the map
+
         let spireHospital = MKPointAnnotation()
         spireHospital.coordinate = .init(latitude: 51.531330, longitude: -3.141665)
         spireHospital.title = "Spire Hospital"
         mapView.addAnnotation(spireHospital)
-        //show all
         mapView.showAnnotations(self.mapView.annotations, animated: true)
         
     }
@@ -62,7 +83,6 @@ class MainViewController: UIViewController {
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let region = MKCoordinateRegion(center: centerCoord, span: span)
         mapView.setRegion(region, animated: true)
-
     }
     
 }
