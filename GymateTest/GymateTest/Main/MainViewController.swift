@@ -30,28 +30,40 @@ class MainViewController: UIViewController {
         view.addSubview(mapView)
         mapView.fillSuperview()
         setupRegionForMap()
-        //setupAnnotationsForMap()
-        //MARK: step 4 call function
         performLocalSearch()
-        
+        //MARK: step 5 call function
+        setupLocationsCarousel()
     }
-    //MARK: step 1 create a local search function
+    
+    //MARK: step 4 call outside view didload
+    let locationsController = LocationsCarouselController(scrollDirection: .horizontal)
+    
+    //MARK: step 1 create setup locations carosuel function
+    fileprivate func setupLocationsCarousel() {
+        //MARK: step 4 call outside view didload
+        let locationsView = locationsController.view!
+        
+        //MARK: step 1 (comment out after  generics implemnted)
+//        let locationsView = UIView(backgroundColor: .red)
+        view.addSubview(locationsView)
+        locationsView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 150))
+    }
+
     fileprivate func performLocalSearch() {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = "Gym"
         
-        //MARK: step 2 setup location
         let centerCoordinate = CLLocationCoordinate2D(latitude: 51.535536, longitude: -3.142308)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let region = MKCoordinateRegion(center: centerCoordinate, span: span)
         request.region = region
-
+        
         let localSearch = MKLocalSearch(request: request)
         localSearch.start { (resp, err) in
             if let err = err {
                 print("unable to retrieve search", err)
             }
-            //MARK: step 3 access mapitem for names and annotations
+
             resp?.mapItems.forEach({ (mapItem) in
                 print(mapItem.name ?? "")
                 let annotation = MKPointAnnotation()

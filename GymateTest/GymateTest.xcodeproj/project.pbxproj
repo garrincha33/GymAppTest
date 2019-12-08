@@ -15,6 +15,7 @@
 		1BD51AB82396CFD60066D5BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BD51AB62396CFD60066D5BB /* LaunchScreen.storyboard */; };
 		1BD51AC12396E06F0066D5BB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AC02396E06F0066D5BB /* MainViewController.swift */; };
 		1BD51AC42396E2CA0066D5BB /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = 1BD51AC32396E2CA0066D5BB /* LBTATools */; };
+		1BD51AC6239D73130066D5BB /* LocationCarouselController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AC5239D73130066D5BB /* LocationCarouselController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		1BD51AB72396CFD60066D5BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BD51AB92396CFD60066D5BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BD51AC02396E06F0066D5BB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		1BD51AC5239D73130066D5BB /* LocationCarouselController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCarouselController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				1BD51AC02396E06F0066D5BB /* MainViewController.swift */,
+				1BD51AC5239D73130066D5BB /* LocationCarouselController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				1BD51AAE2396CFC90066D5BB /* SceneDelegate.swift in Sources */,
 				1BD51AB02396CFC90066D5BB /* ContentView.swift in Sources */,
 				1BD51AC12396E06F0066D5BB /* MainViewController.swift in Sources */,
+				1BD51AC6239D73130066D5BB /* LocationCarouselController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
