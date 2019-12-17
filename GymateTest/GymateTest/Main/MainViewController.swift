@@ -10,21 +10,33 @@ import UIKit
 import MapKit
 import LBTATools
 
+//MARK:- step 1 add Privacy location to app info plist to get current location
+
 extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        //MARK:- step 5 add check here (annotation is MKPointAnnotation) for blue circle
+        if (annotation is MKPointAnnotation) {
+
         let anotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "id")
         anotationView.canShowCallout = true
         anotationView.image = #imageLiteral(resourceName: "GYmPinSmall")
         return anotationView
+        }
+        return nil
     }
 }
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, CLLocationManagerDelegate {
+    //MARK:- step 2 create locationManager with delegate CLLocationManagerDelegate
+    let locationManager = CLLocationManager()
     
     let mapView = MKMapView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        requestUserLocation()
+        //MARK:- step 4 add show user location
+        mapView.showsUserLocation = true
         title = "test"
         mapView.delegate = self
         view.addSubview(mapView)
@@ -33,11 +45,35 @@ class MainViewController: UIViewController {
         performLocalSearch()
         setupLocationsCarousel()
         setupNavBar()
-        //MARK:- step 11 set yor delegate to self, currently unset (or nil) in your locationscontroller
-        locationsController.mainController = self
+
+    }
+    //MARK:- step 2 create request user location function and call in VDL, cllocation del needed
+    fileprivate func requestUserLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
     }
     
-    //MARK:- step 2 setup a black nav bar with lable, needs refactoring
+    //MARK:- step 3 create delegate method and report status
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedWhenInUse:
+            print("Authorisation recieved")
+            //MARK:- step 6 request where the user is
+            locationManager.startUpdatingLocation()
+        default:
+            print("Failed to authorise")
+        }
+    }
+    
+    //MARK:- step 7 start updating
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let firstLocation = locations.first else {return}
+        mapView.setRegion(.init(center: firstLocation.coordinate, span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: false)
+        
+        //saves battery power on your phone
+        locationManager.stopUpdatingLocation()
+    }
+
     fileprivate func setupNavBar() {
         let lable: UILabel = {
             let lable = UILabel(text: "GYMATE", font: UIFont.boldSystemFont(ofSize: 25), textColor: .orange, textAlignment: .left, numberOfLines: 0)
@@ -69,9 +105,7 @@ class MainViewController: UIViewController {
     let locationsController = LocationsCarouselController(scrollDirection: .horizontal)
     
     fileprivate func setupLocationsCarousel() {
-        
         let locationsView = locationsController.view!
-        //        let locationsView = UIView(backgroundColor: .red)
         view.addSubview(locationsView)
         locationsView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: 10, right: 16), size: .init(width: 0, height: 150))
     }
@@ -90,7 +124,7 @@ class MainViewController: UIViewController {
             if let err = err {
                 print("unable to retrieve search", err)
             }
-            //MARK:- step 6 remove old annotations and items
+
             self.mapView.removeAnnotations(self.mapView.annotations)
             self.locationsController.items.removeAll()
             
@@ -100,8 +134,7 @@ class MainViewController: UIViewController {
                 annotation.coordinate = mapItem.placemark.coordinate
                 annotation.title = mapItem.name
                 self.mapView.addAnnotation(annotation)
-                
-                //MARK:- step 7 tell foreach loop which map items to display
+
                 self.locationsController.items.append(mapItem)
                 
             })
