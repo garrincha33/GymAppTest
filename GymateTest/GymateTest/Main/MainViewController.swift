@@ -10,11 +10,8 @@ import UIKit
 import MapKit
 import LBTATools
 
-//MARK:- step 1 add Privacy location to app info plist to get current location
-
 extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        //MARK:- step 5 add check here (annotation is MKPointAnnotation) for blue circle
         if (annotation is MKPointAnnotation) {
 
         let anotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "id")
@@ -27,15 +24,13 @@ extension MainViewController: MKMapViewDelegate {
 }
 
 class MainViewController: UIViewController, CLLocationManagerDelegate {
-    //MARK:- step 2 create locationManager with delegate CLLocationManagerDelegate
-    let locationManager = CLLocationManager()
     
+    let locationManager = CLLocationManager()
     let mapView = MKMapView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        locationsController.mainController = self
         requestUserLocation()
-        //MARK:- step 4 add show user location
         mapView.showsUserLocation = true
         title = "test"
         mapView.delegate = self
@@ -47,31 +42,27 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         setupNavBar()
 
     }
-    //MARK:- step 2 create request user location function and call in VDL, cllocation del needed
+
     fileprivate func requestUserLocation() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
     }
-    
-    //MARK:- step 3 create delegate method and report status
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .authorizedWhenInUse:
             print("Authorisation recieved")
-            //MARK:- step 6 request where the user is
             locationManager.startUpdatingLocation()
         default:
             print("Failed to authorise")
         }
     }
     
-    //MARK:- step 7 start updating
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let firstLocation = locations.first else {return}
         mapView.setRegion(.init(center: firstLocation.coordinate, span: .init(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: false)
-        
-        //saves battery power on your phone
-        locationManager.stopUpdatingLocation()
+
+        //locationManager.stopUpdatingLocation()
     }
 
     fileprivate func setupNavBar() {

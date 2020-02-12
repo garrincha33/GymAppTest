@@ -6,8 +6,6 @@
 //  Copyright © 2019 twisted echo. All rights reserved.
 //
 
-//MARK:- step 13 import extension to render address in lables
-
 import MapKit
 
 extension MKMapItem {
