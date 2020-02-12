@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B755AA623A3E1B900432411 /* MapKit+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B755AA523A3E1B900432411 /* MapKit+extension.swift */; };
+		1B755AA923AE7C5100432411 /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = 1B755AA823AE7C5100432411 /* LBTATools */; };
 		1BD51AAC2396CFC90066D5BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AAB2396CFC90066D5BB /* AppDelegate.swift */; };
 		1BD51AAE2396CFC90066D5BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AAD2396CFC90066D5BB /* SceneDelegate.swift */; };
 		1BD51AB02396CFC90066D5BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AAF2396CFC90066D5BB /* ContentView.swift */; };
@@ -15,11 +16,11 @@
 		1BD51AB52396CFD60066D5BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BD51AB42396CFD60066D5BB /* Preview Assets.xcassets */; };
 		1BD51AB82396CFD60066D5BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BD51AB62396CFD60066D5BB /* LaunchScreen.storyboard */; };
 		1BD51AC12396E06F0066D5BB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AC02396E06F0066D5BB /* MainViewController.swift */; };
-		1BD51AC42396E2CA0066D5BB /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = 1BD51AC32396E2CA0066D5BB /* LBTATools */; };
 		1BD51AC6239D73130066D5BB /* LocationCarouselController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AC5239D73130066D5BB /* LocationCarouselController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B58693923F3CB0B007D452C /* Cardiff.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cardiff.gpx; sourceTree = "<group>"; };
 		1B755AA523A3E1B900432411 /* MapKit+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapKit+extension.swift"; sourceTree = "<group>"; };
 		1BD51AA82396CFC90066D5BB /* GymateTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymateTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD51AAB2396CFC90066D5BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BD51AC42396E2CA0066D5BB /* LBTATools in Frameworks */,
+				1B755AA923AE7C5100432411 /* LBTATools in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +49,7 @@
 		1BD51A9F2396CFC90066D5BB = {
 			isa = PBXGroup;
 			children = (
+				1B58693923F3CB0B007D452C /* Cardiff.gpx */,
 				1BD51AAA2396CFC90066D5BB /* GymateTest */,
 				1BD51AA92396CFC90066D5BB /* Products */,
 			);
@@ -111,7 +113,7 @@
 			);
 			name = GymateTest;
 			packageProductDependencies = (
-				1BD51AC32396E2CA0066D5BB /* LBTATools */,
+				1B755AA823AE7C5100432411 /* LBTATools */,
 			);
 			productName = GymateTest;
 			productReference = 1BD51AA82396CFC90066D5BB /* GymateTest.app */;
@@ -142,7 +144,7 @@
 			);
 			mainGroup = 1BD51A9F2396CFC90066D5BB;
 			packageReferences = (
-				1BD51AC22396E2CA0066D5BB /* XCRemoteSwiftPackageReference "LBTATools" */,
+				1B755AA723AE7C5100432411 /* XCRemoteSwiftPackageReference "LBTATools" */,
 			);
 			productRefGroup = 1BD51AA92396CFC90066D5BB /* Products */;
 			projectDirPath = "";
@@ -372,20 +374,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1BD51AC22396E2CA0066D5BB /* XCRemoteSwiftPackageReference "LBTATools" */ = {
+		1B755AA723AE7C5100432411 /* XCRemoteSwiftPackageReference "LBTATools" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bhlvoong/LBTATools";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.16;
+				minimumVersion = 1.0.17;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1BD51AC32396E2CA0066D5BB /* LBTATools */ = {
+		1B755AA823AE7C5100432411 /* LBTATools */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1BD51AC22396E2CA0066D5BB /* XCRemoteSwiftPackageReference "LBTATools" */;
+			package = 1B755AA723AE7C5100432411 /* XCRemoteSwiftPackageReference "LBTATools" */;
 			productName = LBTATools;
 		};
 /* End XCSwiftPackageProductDependency section */
