@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B58693C23FEA5D7007D452C /* DirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B58693B23FEA5D7007D452C /* DirectionsController.swift */; };
 		1B755AA623A3E1B900432411 /* MapKit+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B755AA523A3E1B900432411 /* MapKit+extension.swift */; };
 		1B755AA923AE7C5100432411 /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = 1B755AA823AE7C5100432411 /* LBTATools */; };
 		1BD51AAC2396CFC90066D5BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AAB2396CFC90066D5BB /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		1B58693923F3CB0B007D452C /* Cardiff.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cardiff.gpx; sourceTree = "<group>"; };
+		1B58693B23FEA5D7007D452C /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
 		1B755AA523A3E1B900432411 /* MapKit+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapKit+extension.swift"; sourceTree = "<group>"; };
 		1BD51AA82396CFC90066D5BB /* GymateTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymateTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD51AAB2396CFC90066D5BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +48,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B58693A23FEA5AF007D452C /* Directions */ = {
+			isa = PBXGroup;
+			children = (
+				1B58693B23FEA5D7007D452C /* DirectionsController.swift */,
+			);
+			path = Directions;
+			sourceTree = "<group>";
+		};
 		1BD51A9F2396CFC90066D5BB = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 		1BD51AAA2396CFC90066D5BB /* GymateTest */ = {
 			isa = PBXGroup;
 			children = (
+				1B58693A23FEA5AF007D452C /* Directions */,
 				1BD51ABF2396E0450066D5BB /* Main */,
 				1BD51AAB2396CFC90066D5BB /* AppDelegate.swift */,
 				1BD51AAD2396CFC90066D5BB /* SceneDelegate.swift */,
@@ -175,6 +186,7 @@
 			files = (
 				1BD51AAC2396CFC90066D5BB /* AppDelegate.swift in Sources */,
 				1BD51AAE2396CFC90066D5BB /* SceneDelegate.swift in Sources */,
+				1B58693C23FEA5D7007D452C /* DirectionsController.swift in Sources */,
 				1BD51AB02396CFC90066D5BB /* ContentView.swift in Sources */,
 				1B755AA623A3E1B900432411 /* MapKit+extension.swift in Sources */,
 				1BD51AC12396E06F0066D5BB /* MainViewController.swift in Sources */,
