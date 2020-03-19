@@ -10,6 +10,12 @@
 		1B58693C23FEA5D7007D452C /* DirectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B58693B23FEA5D7007D452C /* DirectionsController.swift */; };
 		1B755AA623A3E1B900432411 /* MapKit+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B755AA523A3E1B900432411 /* MapKit+extension.swift */; };
 		1B755AA923AE7C5100432411 /* LBTATools in Frameworks */ = {isa = PBXBuildFile; productRef = 1B755AA823AE7C5100432411 /* LBTATools */; };
+		1B8AC3AD2412F37E0048E155 /* TEListHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AC3AC2412F37E0048E155 /* TEListHeaderController.swift */; };
+		1B8AC3AF2412F4060048E155 /* TEListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AC3AE2412F4060048E155 /* TEListCell.swift */; };
+		1B8AC3B12412F47B0048E155 /* TELayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AC3B02412F47B0048E155 /* TELayoutView.swift */; };
+		1B8AC3B32412F4E60048E155 /* TEAnchorConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AC3B22412F4E60048E155 /* TEAnchorConstraints.swift */; };
+		1B8AC3B52412F6620048E155 /* TEListHeaderFooterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AC3B42412F6620048E155 /* TEListHeaderFooterController.swift */; };
+		1B8AC3B7241381750048E155 /* TEListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8AC3B6241381750048E155 /* TEListController.swift */; };
 		1BD51AAC2396CFC90066D5BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AAB2396CFC90066D5BB /* AppDelegate.swift */; };
 		1BD51AAE2396CFC90066D5BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AAD2396CFC90066D5BB /* SceneDelegate.swift */; };
 		1BD51AB02396CFC90066D5BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD51AAF2396CFC90066D5BB /* ContentView.swift */; };
@@ -24,6 +30,12 @@
 		1B58693923F3CB0B007D452C /* Cardiff.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Cardiff.gpx; sourceTree = "<group>"; };
 		1B58693B23FEA5D7007D452C /* DirectionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsController.swift; sourceTree = "<group>"; };
 		1B755AA523A3E1B900432411 /* MapKit+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapKit+extension.swift"; sourceTree = "<group>"; };
+		1B8AC3AC2412F37E0048E155 /* TEListHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEListHeaderController.swift; sourceTree = "<group>"; };
+		1B8AC3AE2412F4060048E155 /* TEListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEListCell.swift; sourceTree = "<group>"; };
+		1B8AC3B02412F47B0048E155 /* TELayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TELayoutView.swift; sourceTree = "<group>"; };
+		1B8AC3B22412F4E60048E155 /* TEAnchorConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEAnchorConstraints.swift; sourceTree = "<group>"; };
+		1B8AC3B42412F6620048E155 /* TEListHeaderFooterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEListHeaderFooterController.swift; sourceTree = "<group>"; };
+		1B8AC3B6241381750048E155 /* TEListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TEListController.swift; sourceTree = "<group>"; };
 		1BD51AA82396CFC90066D5BB /* GymateTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymateTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BD51AAB2396CFC90066D5BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BD51AAD2396CFC90066D5BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +68,19 @@
 			path = Directions;
 			sourceTree = "<group>";
 		};
+		1B8AC3AB2412F3450048E155 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1B8AC3AC2412F37E0048E155 /* TEListHeaderController.swift */,
+				1B8AC3AE2412F4060048E155 /* TEListCell.swift */,
+				1B8AC3B02412F47B0048E155 /* TELayoutView.swift */,
+				1B8AC3B22412F4E60048E155 /* TEAnchorConstraints.swift */,
+				1B8AC3B42412F6620048E155 /* TEListHeaderFooterController.swift */,
+				1B8AC3B6241381750048E155 /* TEListController.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		1BD51A9F2396CFC90066D5BB = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +101,7 @@
 		1BD51AAA2396CFC90066D5BB /* GymateTest */ = {
 			isa = PBXGroup;
 			children = (
+				1B8AC3AB2412F3450048E155 /* Helpers */,
 				1B58693A23FEA5AF007D452C /* Directions */,
 				1BD51ABF2396E0450066D5BB /* Main */,
 				1BD51AAB2396CFC90066D5BB /* AppDelegate.swift */,
@@ -184,8 +210,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B8AC3B32412F4E60048E155 /* TEAnchorConstraints.swift in Sources */,
 				1BD51AAC2396CFC90066D5BB /* AppDelegate.swift in Sources */,
+				1B8AC3AD2412F37E0048E155 /* TEListHeaderController.swift in Sources */,
 				1BD51AAE2396CFC90066D5BB /* SceneDelegate.swift in Sources */,
+				1B8AC3B12412F47B0048E155 /* TELayoutView.swift in Sources */,
+				1B8AC3B7241381750048E155 /* TEListController.swift in Sources */,
+				1B8AC3AF2412F4060048E155 /* TEListCell.swift in Sources */,
+				1B8AC3B52412F6620048E155 /* TEListHeaderFooterController.swift in Sources */,
 				1B58693C23FEA5D7007D452C /* DirectionsController.swift in Sources */,
 				1BD51AB02396CFC90066D5BB /* ContentView.swift in Sources */,
 				1B755AA623A3E1B900432411 /* MapKit+extension.swift in Sources */,

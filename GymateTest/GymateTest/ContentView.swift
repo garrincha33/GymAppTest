@@ -19,3 +19,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+let lable = UILabel(text: "test", font: .boldSystemFont(ofSize: 16))

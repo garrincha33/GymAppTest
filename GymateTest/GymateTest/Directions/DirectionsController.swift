@@ -6,32 +6,62 @@
 //  Copyright © 2020 twisted echo. All rights reserved.
 //
 
-//MARK:- Step 1 create a new view controller for directions
-
 import UIKit
-import LBTATools
 import MapKit
 import SwiftUI
 
-
-//MARK:- Step 2 create a class called Directions Controller with a mapview
-class DirectionsController: UIViewController {
+class DirectionsController: UIViewController, MKMapViewDelegate {
     
     let mapView = MKMapView()
     let navBar = UIView(backgroundColor: #colorLiteral(red: 0.1219913736, green: 0.5641101003, blue: 0.9661875367, alpha: 1))
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //step 4 - set the mapview delegate to self and add into your class above
+        mapView.delegate = self
         view.addSubview(mapView)
-        //MARK:- step 6 call function
         setupRegionForMap()
-        //MARK:- step 7 setup navBarUI
         setupNavbarUI()
-        mapView.anchor(top: navBar.bottomAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        mapView.TEanchor(top: navBar.bottomAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
         mapView.showsUserLocation = true
         setupStartEndDummyAnnotations()
+        //step1 create function
+        requestForDirections()
     }
-    //MARK:- step 8 setup some dummy annotaions
+    
+    fileprivate func requestForDirections() {
+        //step 2 implement a request a make a call
+        let request = MKDirections.Request()
+        let startingPlaceMark = MKPlacemark(coordinate: .init(latitude: 51.535536, longitude: -3.142308))
+        let endingPlaceMark = MKPlacemark(coordinate: .init(latitude: 51.483850, longitude: -3.176807))
+        request.source = .init(placemark: startingPlaceMark)
+        request.destination = .init(placemark: endingPlaceMark)
+        let directions = MKDirections(request: request)
+        directions.calculate { (resp, err) in
+            if let err = err {
+                print("failed to get routing err", err)
+                return
+            }
+
+            //step 3 - success get polyline, ready for rendering
+            print("found routing directions")
+            guard let route = resp?.routes.first else {return}
+            self.mapView.addOverlay(route.polyline)
+            
+        }
+        
+    }
+    
+    //step 5 - render the polyline to the map with "renderer for overlay"
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        //create a poly line renderer
+        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+        polylineRenderer.strokeColor = .red
+        polylineRenderer.lineWidth = 5
+        return polylineRenderer
+    }
+    
+
     fileprivate func setupStartEndDummyAnnotations() {
         let startAnnotations = MKPointAnnotation()
         startAnnotations.coordinate = .init(latitude: 51.535536, longitude: -3.142308)
@@ -47,15 +77,12 @@ class DirectionsController: UIViewController {
         mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
-    //MARK:- step 7 setup navBarUI
     fileprivate func setupNavbarUI() {
         
-        navBar.setupShadow(opacity: 1, radius: 5)
+        navBar.TEsetupShadow(opacity: 1, radius: 5)
         view.addSubview(navBar)
-        navBar.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 0, bottom: -100, right: 0))
+        navBar.TEanchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 0, bottom: -100, right: 0))
     }
-    
-    //MARK:- step 5 setup region for map only works in simulator
     fileprivate func setupRegionForMap() {
         let centerCoord = CLLocationCoordinate2D(latitude: 51.535536, longitude: -3.142308)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
@@ -64,12 +91,11 @@ class DirectionsController: UIViewController {
     }
 }
 
-//MARK:- step 3 create the swiftUI preview struct Direciotns Preview
 struct DirectionsPreview: PreviewProvider {
     static var previews: some View {
         ContainerView().edgesIgnoringSafeArea(.all)
     }
-    //MARK:- step 4 create the Container view inside with 2 functions
+    
     struct ContainerView: UIViewControllerRepresentable {
         
         func makeUIViewController(context: UIViewControllerRepresentableContext<DirectionsPreview.ContainerView>) -> UIViewController {
