@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import LBTATools
 import MapKit
 
-class LocationCell: LBTAListCell<MKMapItem> {
+class LocationCell: TEListCell<MKMapItem> {
 
     override var item: MKMapItem! {
         didSet {
@@ -31,7 +30,7 @@ class LocationCell: LBTAListCell<MKMapItem> {
     }
 }
 
-class LocationsCarouselController: LBTAListController<LocationCell, MKMapItem > {
+class LocationsCarouselController: TEListController<LocationCell, MKMapItem > {
 
     weak var mainController: MainViewController?
 

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import MapKit
 import LBTATools
+import MapKit
 
 extension MainViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -35,7 +35,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         title = "test"
         mapView.delegate = self
         view.addSubview(mapView)
-        mapView.fillSuperview()
+        mapView.TEfillSuperview()
         setupRegionForMap()
         performLocalSearch()
         setupLocationsCarousel()
@@ -70,6 +70,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             let lable = UILabel(text: "GYMATE", font: UIFont.boldSystemFont(ofSize: 25), textColor: .orange, textAlignment: .left, numberOfLines: 0)
             return lable
         }()
+       
  
         let blackView = UIView()
         blackView.backgroundColor = .black
@@ -84,12 +85,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         lableStackView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(stackView)
-        stackView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor)
+        stackView.TEanchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor)
         stackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        
+
         view.addSubview(lableStackView)
-        lableStackView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 35, left: 150, bottom: 15, right: 15))
+        lableStackView.TEanchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 35, left: 150, bottom: 15, right: 15))
     }
     
     
@@ -98,7 +98,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     fileprivate func setupLocationsCarousel() {
         let locationsView = locationsController.view!
         view.addSubview(locationsView)
-        locationsView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: 10, right: 16), size: .init(width: 0, height: 150))
+        locationsView.TEanchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: 10, right: 16), size: .init(width: 0, height: 150))
     }
     
     fileprivate func performLocalSearch() {
